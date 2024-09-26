@@ -26,6 +26,19 @@ class PlanetaServices {
     }
 
   }
+
+  public static async getPlanetaPorId(): Promise<any> {
+    let planetaEncontrado: Planeta[] = [];
+
+    try {
+      let response = await client.get("/planets/:id/")
+      planetaEncontrado = response.data.results
+      return planetaEncontrado
+    } catch (error) {
+      return `Error fetching data: ${error}`;
+    }
+  }
+
 }
 
 export default PlanetaServices;

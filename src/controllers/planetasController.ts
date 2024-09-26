@@ -9,6 +9,7 @@ class PlanetasController {
   static getPlanetaId = async (req: Request, res: Response) =>{
     res.status(200).json(await PlanetaServices.getPlanetaPorId())
   }; 
+
 }
 
 export { PlanetasController };
