@@ -7,7 +7,8 @@ class PlanetasController {
   };
 
   static getPlanetaId = async (req: Request, res: Response) =>{
-    res.status(200).json(await PlanetaServices.getPlanetaPorId())
+    const idConvertido = parseInt(req.params.id)
+    res.status(200).json(await PlanetaServices.getPlanetaPorId(idConvertido));
   }; 
 
 }
