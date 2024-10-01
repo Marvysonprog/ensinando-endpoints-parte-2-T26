@@ -1,5 +1,5 @@
 
-import { client } from "../client";
+import { client, client2 } from "../client";
 import { Planeta } from "../models/planetas";
 
 class PlanetaServices {
@@ -24,22 +24,41 @@ class PlanetaServices {
     } catch (error) {
       return `Error fetching data: ${error}`;
     }
-
   }
 
   public static async getPlanetaPorId(id: number): Promise<any> {
     let planetaEncontrado: Planeta;
 
-
     try {
-      let response = await client.get(`/planets/${id}/`)      
+      let response = await client.get(`/planets/${id}/`)
       planetaEncontrado = response.data
 
-      if(!planetaEncontrado){
-        return "Error fetching data"; 
+      if (!planetaEncontrado) {
+        return "Error fetching data";
       } else {
         return planetaEncontrado
       }
+    } catch (error) {
+      return `Error fetching data: ${error}`;
+    }
+  }
+
+  public static async updateNomeDoPlaneta(id: number, nome: string): Promise<any> {
+    let planetaEncontrado: Planeta;
+
+    try {
+      let response = await client2.patch(`/planetas/${id}`, {
+        name: nome
+      });
+
+      planetaEncontrado = response.data
+
+      if (!planetaEncontrado) {
+        return "Error fetching data";
+      } else {
+        return planetaEncontrado
+      }
+
     } catch (error) {
       return `Error fetching data: ${error}`;
     }

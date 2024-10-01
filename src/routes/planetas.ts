@@ -5,4 +5,6 @@ export const planetasRouter = Router();
 
 planetasRouter.get("/planetas", PlanetasController.getAllPlanetas);
 
-planetasRouter.get("/planetas/:id", PlanetasController.getPlanetaId)
+planetasRouter.get("/planetas/:id", PlanetasController.getPlanetaId);
+
+planetasRouter.patch("/planetas/:id", PlanetasController.updateNomePlaneta);

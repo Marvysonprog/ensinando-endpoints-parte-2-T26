@@ -1,9 +1,9 @@
-import { client } from "../client"; 
+import { client } from "../client";
 import { Pessoas } from "../models/pessoas";
 
 class PessoasServices {
     public static async getAllPessoas(): Promise<any> {
-        let listaDePessoas: Pessoas [] = [];
+        let listaDePessoas: Pessoas[] = [];
 
         try {
             let response = await client.get("/people/")
@@ -27,20 +27,20 @@ class PessoasServices {
 
     public static async getPessoasPorId(id: number): Promise<any> {
         let pessoaEncontrada: Pessoas;
-    
 
-    try {
-        let response = await client.get(`/people/${id}/`)
-        pessoaEncontrada = response.data 
+        try {
+            let response = await client.get(`/people/${id}/`)
+            pessoaEncontrada = response.data
 
-        if(!pessoaEncontrada){
-            return "Erro fetching data";
-        } else {
-            return pessoaEncontrada
+            if (!pessoaEncontrada) {
+                return "Erro fetching data";
+            } else {
+                return pessoaEncontrada
+            }
+        } catch (error) {
+            return `Error fetching data: ${error}`
         }
-    } catch (error) {
-        return `Error fetching data: ${error}`
     }
-}}
+}
 
 export default PessoasServices;

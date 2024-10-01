@@ -82,8 +82,8 @@ Primeiro você deve entender como criar endpoints, logo depois ir criando as ló
 
 Tratar erros é na controller, mas atenção: ela NAO pode ter lógica alguma.
 
-Logo após, na hora de fazer os posts, você pode usar o arquivo json criado na model, para poder aprender sobre outros métodos também: POST, PUT, etc.
+Logo após, na hora de fazer os posts, você pode usar o arquivo json criado na model, para poder aprender sobre outros métodos também: POST, PUT, etc.\n
+A ideia desse exercício é você explorar tudo que tem aqui. /n
 
-A ideia desse exercício é você explorar tudo que tem aqui.
 
 Na hora de fazer requisição, use o client previamente criado e use a documentação da api de [star wars](https://swapi.dev/documentation).
