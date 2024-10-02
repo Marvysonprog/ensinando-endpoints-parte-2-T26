@@ -1,5 +1,7 @@
+import { title } from "process";
 import { client2 } from "../client";
 import { Postagem } from "../models/postagem";
+import { timingSafeEqual } from "crypto";
 
 export class PostagemServices {
   public static async addNovaPostagem(postagem: Postagem): Promise<any> {
@@ -35,6 +37,26 @@ export class PostagemServices {
         return listasDePostagens;
       } else {
         return "Error fetching data";
+      }
+    } catch (error) {
+      return `Error fetching data: ${error}`;
+    }
+  }
+  public static async updateDeUmaInformacao(id: number, dados: any): Promise<any> {
+    let postagemModificada: Postagem;
+
+    try {
+      let response = await client2.patch(`/posts/${id}`, {
+        dados: dados
+      });
+      console.log("Esse response " + response.data)
+      postagemModificada = response.data
+
+      if (!postagemModificada) {
+        return "Error fetching data";
+      } else {
+        console.log("Aqui é a postagem modificada: " + postagemModificada)
+        return postagemModificada
       }
     } catch (error) {
       return `Error fetching data: ${error}`;

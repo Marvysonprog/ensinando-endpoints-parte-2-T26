@@ -6,3 +6,4 @@ export const postagemRouter = Router ();
 
 postagemRouter.post("/postagem", PostagemController.addPostagem);
 postagemRouter.get("/postagem", PostagemController.getAllPostagens);
+postagemRouter.patch("/postagem/:id", PostagemController.updateUmaInformacao)
