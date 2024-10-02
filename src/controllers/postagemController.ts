@@ -14,9 +14,8 @@ export class PostagemController {
 
   static updateUmaInformacao = async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.id);
-    const dados = req.body
-    console.log("Aqui esta const dados: " + dados)
-    res.status(200).json(await PostagemServices.updateDeUmaInformacao(id, dados))
+    const {title, body} = req.body
+    res.status(200).json(await PostagemServices.updateDeUmaInformacao(id, {title, body}))
   }
 }
 

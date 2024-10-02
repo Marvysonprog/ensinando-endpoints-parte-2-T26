@@ -42,20 +42,16 @@ export class PostagemServices {
       return `Error fetching data: ${error}`;
     }
   }
-  public static async updateDeUmaInformacao(id: number, dados: any): Promise<any> {
+  public static async updateDeUmaInformacao(id: number, dados: { title?: string; body?: string }): Promise<any> {
     let postagemModificada: Postagem;
 
     try {
-      let response = await client2.patch(`/posts/${id}`, {
-        dados: dados
-      });
-      console.log("Esse response " + response.data)
+      let response = await client2.patch(`/posts/${id}`, dados);
       postagemModificada = response.data
 
       if (!postagemModificada) {
         return "Error fetching data";
       } else {
-        console.log("Aqui é a postagem modificada: " + postagemModificada)
         return postagemModificada
       }
     } catch (error) {
