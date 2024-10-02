@@ -58,4 +58,23 @@ export class PostagemServices {
       return `Error fetching data: ${error}`;
     }
   }
+
+  public static async deletandoPostagem(id: number): Promise<any> {
+    let postagemRemovida: Postagem;
+
+    try {
+      let response = await client2.delete(`/posts/${id}`);
+      postagemRemovida = response.data
+
+      if(!postagemRemovida){
+        return "Error fetching data";
+      } else {
+        return `Postagem removida com sucesso.`
+        
+      }
+    } catch (error) {
+      return `Error fetching data: ${error}`;
+      
+    }
+  }
 }
