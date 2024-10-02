@@ -2,6 +2,7 @@ import { title } from "process";
 import { client2 } from "../client";
 import { Postagem } from "../models/postagem";
 import { timingSafeEqual } from "crypto";
+import { response } from "express";
 
 export class PostagemServices {
   public static async addNovaPostagem(postagem: Postagem): Promise<any> {
@@ -42,17 +43,20 @@ export class PostagemServices {
       return `Error fetching data: ${error}`;
     }
   }
-  public static async updateDeUmaInformacao(id: number, dados: { title?: string; body?: string }): Promise<any> {
+  public static async updateDeUmaInformacao(
+    id: number,
+    dados: { title?: string; body?: string }
+  ): Promise<any> {
     let postagemModificada: Postagem;
 
     try {
       let response = await client2.patch(`/posts/${id}`, dados);
-      postagemModificada = response.data
+      postagemModificada = response.data;
 
       if (!postagemModificada) {
         return "Error fetching data";
       } else {
-        return postagemModificada
+        return postagemModificada;
       }
     } catch (error) {
       return `Error fetching data: ${error}`;
@@ -64,17 +68,34 @@ export class PostagemServices {
 
     try {
       let response = await client2.delete(`/posts/${id}`);
-      postagemRemovida = response.data
+      postagemRemovida = response.data;
 
-      if(!postagemRemovida){
+      if (!postagemRemovida) {
         return "Error fetching data";
       } else {
-        return `Postagem removida com sucesso.`
-        
+        return `Postagem removida com sucesso.`;
       }
     } catch (error) {
       return `Error fetching data: ${error}`;
-      
+    }
+  }
+  public static async updateDaPostagem(
+    id: number,
+    dados: { title: string; body: string }
+  ): Promise<any> {
+    let postagemModificada: Postagem;
+
+    try {
+      let response = await client2.put(`/posts/${id}`, dados);
+      postagemModificada = response.data;
+     
+      if(!postagemModificada){
+        return "Error fetching data";
+      } else {
+        return postagemModificada
+      }
+    } catch (error) {
+      return `Error fetching data: ${error}`;
     }
   }
 }

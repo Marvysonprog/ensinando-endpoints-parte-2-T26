@@ -21,6 +21,12 @@ export class PostagemController {
     const id: number = parseInt(req.params.id);
     res.status(200).json(await PostagemServices.deletandoPostagem(id))
   }
+
+  static updatePostagem = async (req:Request, res: Response) => {
+    const id: number = parseInt(req.params.id);
+    const {title, body} = req.body
+    res.status(200).json( await PostagemServices.updateDaPostagem(id, {title, body}));
+  }
 }
 
 
